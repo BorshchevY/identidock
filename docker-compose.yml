@@ -1,0 +1,22 @@
+identidock:
+  build: .
+  ports:
+     - "80:5000"
+  environment:
+     ENV: DEV
+  hostname: identidock
+  volumes:
+     - ./app:/app
+  links:
+     - dnmonster
+     - redis
+
+dnmonster:
+  image: amouat/dnmonster
+  ports:
+     - "8080:8080"
+  hostname: dnmonster
+
+redis:
+  image: redis:3.0
+  hostname: redis
